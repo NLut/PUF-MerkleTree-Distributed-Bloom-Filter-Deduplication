@@ -230,7 +230,7 @@ This project implements a secure **PUF-based authentication and data transmissio
      "tag": "<HMAC(K, data|C|P|timestamp)>"
    }
 4. Session close after reach the defined **MAX_USES** and `.session.json` will be deleted.
-
+---
 ## Distributed Bloom Filter Deduplication for IIoT Sensor Data
 
 This C project implements a **distributed Bloom filter-based deduplication** system for large-scale **IIoT sensor data** stored in CSV format. It detects duplicates efficiently using a time-resetting Bloom filter per data type and exports only non-duplicate records.
