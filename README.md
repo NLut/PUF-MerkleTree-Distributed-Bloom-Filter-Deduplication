@@ -13,7 +13,7 @@ This C project implements a **distributed Bloom filter-based deduplication** sys
 
 ```
 
-├── bloomfilter.c           # The main C source file (this project)
+├── bloomfilter.c           # The main bloomfilter source file 
 ├── records.csv             # Input CSV file (IIoT raw sensor data)
 ├── non\_duplicates.csv      # Output CSV file (deduplicated records)
 ├── README.md               # Project documentation
