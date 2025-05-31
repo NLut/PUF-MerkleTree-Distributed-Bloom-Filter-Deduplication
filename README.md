@@ -213,7 +213,7 @@ This project implements a secure **PUF-based authentication and data transmissio
 ### Data Transmission
 ### ▶ Run
 ```bash
-  python datatransmission.py
+  python data_transmission.py
 ```
 1. **Edge** sends a signed payload with the following structure:
    ```json
