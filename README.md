@@ -1,4 +1,4 @@
-# PUF-Based Fog Authentication with Merkle Tree Proofs and Distributed Bloom Filter Deduplication for IIoT (Copy)
+# PUF-Based Fog Authentication with Merkle Tree Proofs and Distributed Bloom Filter Deduplication for IIoT
 
 This full-stack system securely authenticates IIoT edge devices using **PUF (Physically Unclonable Functions)** and **Merkle Tree proofs**, transmits data with **HMAC integrity**, and performs **deduplication** using a high-performance **distributed Bloom Filter** implemented in C.
 
@@ -190,10 +190,12 @@ This project implements a secure **PUF-based authentication and data transmissio
   python edge_enroll.py
 ```
 
-1. **Edge** generates challenge–response pairs (CRP) via PUF simulation
-2. **Edge** derives `(P, K)` using a Reed–Solomon fuzzy extractor
-3. **Edge** sends `{C, P, K}` to the **Fog Node**
-4. **Fog** builds a Merkle Tree from all `(DID, C, P)` and generates proofs for each leaf
+1. **Edge** sends DID to the **Fog Node** for enrollment.
+2. **Fog Node** send list of challenge back to **Edge**.
+3. **Edge** generates challenge–response pairs (CRP) via PUF simulation.
+4. **Edge** derives `(P, K)` using a fuzzy extractor.
+5. **Edge** sends `{C, P, K}` to the **Fog Node**.
+6. **Fog** builds a Merkle Tree from all `(DID, C, P)` and generates proofs for each leaf.
 
 ---
 
@@ -224,6 +226,8 @@ This project implements a secure **PUF-based authentication and data transmissio
      "leaf": "<MerkleLeafHash>",
      "tag": "<HMAC(K, data|C|P|timestamp)>"
    }
+2. Session close after reach the defined **MAX_USES** and `.session.json` will be deleted.
+
 ## Distributed Bloom Filter Deduplication for IIoT Sensor Data
 
 This C project implements a **distributed Bloom filter-based deduplication** system for large-scale **IIoT sensor data** stored in CSV format. It detects duplicates efficiently using a time-resetting Bloom filter per data type and exports only non-duplicate records.
