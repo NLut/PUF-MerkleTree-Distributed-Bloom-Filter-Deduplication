@@ -112,11 +112,12 @@ PROOF_DB_FILE=proof_db.json               # Merkle proof database for each leaf 
 PORT=5000                                # Port on which the Fog server (Flask app) will listen for incoming requests
 
 ```
-- start fog_client using:
+Start fog_client using:
+### ▶ Run
   ```bash
   python fog_client.py
   ```
-- The expected output:
+The expected output:
   ```bash
    * Running on all addresses (0.0.0.0)
    * Running on http://127.0.0.1:5000
