@@ -147,7 +147,7 @@ SEND_PAYLOAD=http://127.0.0.1:5000/send_payload      # Endpoint to send authenti
 SESSION_FILE=.session.json      # Path to local session file storing active session keys (P, K, C)
 ```
 
-### Example .env (Between 2 VMs)
+### Example .env (Between VMs)
 Use this format on your **Edge** when communicating with a **Fog** hosted on different VM:
 
 ```env
@@ -205,10 +205,11 @@ This project implements a secure **PUF-based authentication and data transmissio
 ```bash
   python edge_authen.py
 ```
-1. **Fog** randomly selects a stored challenge `C` for a given `DID`
-2. **Edge** computes `P` from its PUF and sends `{DID, C, P}` to the fog
-3. **Fog** verifies `P` against the stored value in `PUF_DB.json`
-4. On success, a session file `.session.json` is created for secure payload communication
+1. **Edge** send request to **Fog Node** for challenge `C`
+2. **Fog** randomly selects a stored challenge `C` for a given `DID`
+3. **Edge** computes `P` from its PUF and sends `{DID, C, P}` to the fog
+4. **Fog** verifies `P` against the stored value in `PUF_DB.json`
+5. On success, a session file `.session.json` is created for secure payload communication
 
 ---
 
@@ -217,7 +218,9 @@ This project implements a secure **PUF-based authentication and data transmissio
 ```bash
   python data_transmission.py
 ```
-1. **Edge** sends a signed payload with the following structure:
+1. **Edge** retrives `{DID, C, P, K}` from `.session.json`
+2. **Edge** computes leaf using `{DID, C, P}` and hmag tag using `{K, data, C, P, timestamp}`.
+3. **Edge** sends a signed payload with the following structure:
    ```json
    {
      "DID": "EDGE1",
@@ -226,7 +229,7 @@ This project implements a secure **PUF-based authentication and data transmissio
      "leaf": "<MerkleLeafHash>",
      "tag": "<HMAC(K, data|C|P|timestamp)>"
    }
-2. Session close after reach the defined **MAX_USES** and `.session.json` will be deleted.
+4. Session close after reach the defined **MAX_USES** and `.session.json` will be deleted.
 
 ## Distributed Bloom Filter Deduplication for IIoT Sensor Data
 
