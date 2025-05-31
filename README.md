@@ -96,7 +96,7 @@ source .venv/bin/activate
 ### 1. Configure `.env` (Fog Node)
 Create a `.env` file in the `fog/` directory (e.g., `/home/user/fog/`) with the following content:
 
-### Example .env
+#### Example .env
 ```env
 # File management
 RECORD_FILE=records.csv
@@ -124,7 +124,7 @@ PORT=5000
 ### 2. Configure `.env` (Edge Node)
 Create a `.env` file in the `edge/` directory (e.g., `/home/user/edge/`) with the following content:
 
-### Example .env (Local Test)
+#### Example .env (Local Test)
 Use this when running **Edge** and **Fog** on the same machine (e.g., during local testing):
 
 ```env
