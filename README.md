@@ -184,6 +184,11 @@ This project implements a secure **PUF-based authentication and data transmissio
 ## How It Works
 
 ### Enrollment Phase
+### ▶ Run
+
+```bash
+  python edge_enroll.py
+```
 
 1. **Edge** generates challenge–response pairs (CRP) via PUF simulation
 2. **Edge** derives `(P, K)` using a Reed–Solomon fuzzy extractor
@@ -193,7 +198,11 @@ This project implements a secure **PUF-based authentication and data transmissio
 ---
 
 ### Authentication Phase
+### ▶ Run
 
+```bash
+  python edge_authen.py
+```
 1. **Fog** randomly selects a stored challenge `C` for a given `DID`
 2. **Edge** computes `P` from its PUF and sends `{DID, C, P}` to the fog
 3. **Fog** verifies `P` against the stored value in `PUF_DB.json`
@@ -202,7 +211,10 @@ This project implements a secure **PUF-based authentication and data transmissio
 ---
 
 ### Data Transmission
-
+### ▶ Run
+```bash
+  python datatransmission.py
+```
 1. **Edge** sends a signed payload with the following structure:
    ```json
    {
@@ -255,7 +267,7 @@ gcc bloomfilter.c -o bloomfilter
 ./bloomfilter
 ```
 
-### 💡 Output Example
+### Output Example
 
 ```txt
 === Distributed Bloom Filter Summary ===
@@ -269,7 +281,7 @@ The output file `non_duplicates.csv` will contain all unique records in the orig
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 You can modify these parameters in `bloomfilter.c`:
 
