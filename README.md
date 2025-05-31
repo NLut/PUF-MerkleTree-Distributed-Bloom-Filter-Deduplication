@@ -41,6 +41,7 @@ create_vm.sh
 │   ├── non_duplicates.csv        # Output: Deduplicated result
 │   └── requirements.txt
 │   └── setup_venv.sh             # Create python venv
+
 ````
 # Environment Setup
 - Installing dependencies
@@ -98,17 +99,18 @@ Create a `.env` file in the `fog/` directory (e.g., `/home/user/fog/`) with the 
 
 #### Example .env
 ```env
-# File management
-RECORD_FILE=records.csv
-CSV_FIELDS=DID,timestamp,type,value,leaf,tag
+# === File Management ===
+RECORD_FILE=records.csv           # Output file that stores verified and accepted payloads from edge devices
+CSV_FIELDS=DID,timestamp,type,value,leaf,tag  # CSV header format for the RECORD_FILE
 
-# Database files
-TEMP_CHALLENGE_FILE=temp_challenge.json
-PUF_DB_FILE=PUF_DB.json
-PROOF_DB_FILE=proof_db.json
+# === Database Files ===
+TEMP_CHALLENGE_FILE=temp_challenge.json   # Temporary file to store challenges during enrollment (per DID)
+PUF_DB_FILE=PUF_DB.json                   # Main database storing {C, P, K} for each enrolled device
+PROOF_DB_FILE=proof_db.json               # Merkle proof database for each leaf node, generated after enrollment
+# === Connection Configuration ===
 
-# Connection
-PORT=5000
+PORT=5000                                # Port on which the Fog server (Flask app) will listen for incoming requests
+
 ```
 - start fog_client using:
   ```bash
